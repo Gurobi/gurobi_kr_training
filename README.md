@@ -1,5 +1,9 @@
 # Gurobi 한국 사용자 교육 자료
 
+<p align="center">
+  <img src="qrcode.png" alt="Repository QR Code" width="150"/>
+</p>
+
 이 저장소는 **Gurobi Optimizer**를 처음 접하는 한국 사용자를 위한 실습 중심 교육 자료를 제공합니다.
 Python(`gurobipy`)을 사용하여 수리 최적화(Mathematical Optimization)의 기본 개념부터 배합 및 생산 계획 예제까지 단계적으로 학습할 수 있습니다.
 
