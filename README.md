@@ -1,7 +1,7 @@
 # Gurobi 한국 사용자 교육 자료
 
 <p align="center">
-  <img src="qrcode.png" alt="Repository QR Code" width="150"/>
+  <img src="qrcode.png" alt="Repository QR Code" width="250"/>
 </p>
 
 이 저장소는 **Gurobi Optimizer**를 처음 접하는 한국 사용자를 위한 실습 중심 교육 자료를 제공합니다.
