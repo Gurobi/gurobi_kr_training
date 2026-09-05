@@ -35,7 +35,8 @@ Gurobi **Intelligence Hub**([intelligence.gurobi.com](https://intelligence.gurob
 | 4 | Modeler로 모델 만들기 | [4_Modeler.md](중급/4_Modeler.md) |
 | 5 | Explainer로 모델 진단하기 | [5_Explainer.md](중급/5_Explainer.md) |
 
-`중급/moodel.lp`는 5번 문서 실습에 필요한 모델 파일입니다.
+`중급/3_생산재고관리문제_data.csv`는 4번 문서 워밍업(Part 0)에서, `중급/moodel.lp`와
+`중급/moodel_repaired.lp`는 5번 문서 실습에서 각각 업로드하는 데이터/모델 파일입니다.
 
 ---
 
@@ -75,11 +76,13 @@ Gurobi 공식 문서의 첫 번째 예제를 통해 `gurobipy`의 기본 사용�
 
 #### 4. Modeler로 모델 만들기 (`4_Modeler.md`)
 자연어로 설명한 문제를 **Modeler**(Beta)가 스펙 → `gurobipy` 코드 → 테스트까지 만들어주는 과정을
-경험합니다.
+경험합니다. 세 부분(Part 0~1, 부록)으로 구성됩니다.
 
-- 워밍업: 초급에서 직접 코딩했던 문제를 Modeler에 맡겨 결과를 비교 — AI가 만든 모델을 검증하는 습관
-- 본 실습: 유가공 공장의 다단계 생산 계획 문제를 Modeler와 함께 모델링
-- 여기서 만든 모델이 5번 노트북에서 이어서 사용됩니다.
+- Part 0. 워밍업: 초급에서 직접 코딩했던 문제를 Modeler에 맡겨 결과를 비교 — AI가 만든 모델을 검증하는 습관
+- Part 1. 본 실습: 프리미엄 유제품 음료 하나를 생산하는 단순화된 문제를 30분 안에 모델링해 feasible한
+  최적해까지 완성
+- 부록. 전체 공정 모델: 같은 공장을 원유 2종·제품 5종으로 확장한 버전 — 여기서 만든 모델이 5번
+  문서에서 이어서 사용됩니다.
 
 #### 5. Explainer로 모델 진단하기 (`5_Explainer.md`)
 **Explainer**(Experimental)로 실행 불가능(infeasible)한 모델을 진단·복구·분석합니다.
@@ -87,18 +90,6 @@ Gurobi 공식 문서의 첫 번째 예제를 통해 `gurobipy`의 기본 사용�
 - Infeasibility Diagnosis: IIS(충돌하는 최소 제약 집합)로 원인 진단
 - Feasibility Restoration: `feasRelax`로 최소 완화량 계산
 - Sensitivity Analysis: 섀도우 프라이스로 투자 우선순위 도출
-
----
-
-## 마무리
-
-- **초급** 과정에서는 문제를 직접 수식으로 세우고 `gurobipy` 코드를 한 줄씩 작성했습니다.
-- **중급** 과정에서는 **Modeler**로 자연어에서 검증된 모델을 얻고, **Explainer**로 그 모델을
-  진단·복구·분석하는 과정을 경험합니다.
-
-실제 현업에서는 이 두 에이전트를 조합해 "모델링 → 운영 중 이슈 대응"까지 이어지는 워크플로를
-구성할 수 있습니다. 다만 두 과정 모두에서 강조하듯, AI 에이전트가 만든 모델과 설명을 무조건
-신뢰하지 말고 acceptance test와 같은 방법으로 직접 검증하는 습관을 들이는 것이 중요합니다.
 
 ---
 
@@ -128,6 +119,18 @@ jupyter notebook
 
 로컬 실행을 위해서는 유효한 Gurobi 라이선스가 필요합니다.
 학술 사용자는 [Gurobi Academic License](https://www.gurobi.com/academia/academic-program-and-licenses/)를 무료로 신청할 수 있습니다.
+
+---
+
+## 마무리
+
+- **초급** 과정에서는 문제를 직접 수식으로 세우고 `gurobipy` 코드를 한 줄씩 작성했습니다.
+- **중급** 과정에서는 **Modeler**로 자연어에서 검증된 모델을 얻고, **Explainer**로 그 모델을
+  진단·복구·분석하는 과정을 경험합니다.
+
+실제 현업에서는 이 두 에이전트를 조합해 "모델링 → 운영 중 이슈 대응"까지 이어지는 워크플로를
+구성할 수 있습니다. 다만 두 과정 모두에서 강조하듯, AI 에이전트가 만든 모델과 설명을 무조건
+신뢰하지 말고 acceptance test와 같은 방법으로 직접 검증하는 습관을 들이는 것이 중요합니다.
 
 ---
 
