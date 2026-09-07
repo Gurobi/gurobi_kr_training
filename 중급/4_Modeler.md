@@ -291,21 +291,55 @@ Modeler는 아래와 같이 완성된 수리모형을 정리해서 보여줍니�
 
 **목적함수**
 
-$$\max \quad 7.0 \cdot b$$
+$$
+\max \quad 7.0 \cdot b
+$$
 
 **제약 조건**
 
-$$x \leq 30{,}000 \quad \text{(C1: 원유 구매 상한)}$$
-$$x \leq 40{,}000 \quad \text{(C2: 분리 설비 용량 — C1에 의해 사실상 비구속)}$$
-$$c_p \leq 6{,}000 \quad \text{(C3: 단백질 농축 설비 용량)}$$
-$$s \leq 5{,}000 \quad \text{(C4: 발효 설비 용량)}$$
-$$c_b + c_p = 0.3x \quad \text{(C5: 크림 물질 균형)}$$
-$$s = 0.5x \quad \text{(C6: 탈지유 물질 균형)}$$
-$$p = 0.6 \cdot c_p \quad \text{(C7: 단백질 농축물 균형)}$$
-$$f = 0.3 \cdot s \quad \text{(C8: 발효 농축물 균형)}$$
-$$b = c_b + p + f \quad \text{(C9: 음료 생산량 균형)}$$
-$$-4 \cdot c_b + 21 \cdot p + 11 \cdot f \geq 0 \quad \text{(C10: 품질 요건 } \tfrac{90c_b+115p+105f}{b}\geq 94 \text{ 를 선형화)}$$
-$$x, c_b, c_p, p, s, f, b \geq 0 \quad \text{(C11: 비음 조건)}$$
+$$
+x \leq 30{,}000 \quad \text{(C1: 원유 구매 상한)}
+$$
+
+$$
+x \leq 40{,}000 \quad \text{(C2: 분리 설비 용량 — C1에 의해 사실상 비구속)}
+$$
+
+$$
+c_p \leq 6{,}000 \quad \text{(C3: 단백질 농축 설비 용량)}
+$$
+
+$$
+s \leq 5{,}000 \quad \text{(C4: 발효 설비 용량)}
+$$
+
+$$
+c_b + c_p = 0.3x \quad \text{(C5: 크림 물질 균형)}
+$$
+
+$$
+s = 0.5x \quad \text{(C6: 탈지유 물질 균형)}
+$$
+
+$$
+p = 0.6 \cdot c_p \quad \text{(C7: 단백질 농축물 균형)}
+$$
+
+$$
+f = 0.3 \cdot s \quad \text{(C8: 발효 농축물 균형)}
+$$
+
+$$
+b = c_b + p + f \quad \text{(C9: 음료 생산량 균형)}
+$$
+
+$$
+-4 \cdot c_b + 21 \cdot p + 11 \cdot f \geq 0 \quad \text{(C10: 품질 요건 } \tfrac{90c_b+115p+105f}{b}\geq 94 \text{ 를 선형화)}
+$$
+
+$$
+x, c_b, c_p, p, s, f, b \geq 0 \quad \text{(C11: 비음 조건)}
+$$
 
 수리모형이 말로 설명한 내용과 맞다고 확인되면 구현을 요청합니다.
 
@@ -324,8 +358,13 @@ Modeler가 다시 살펴보니, 위 수리모형의 **C5·C6가 부등식이 아
 아래처럼 등식(`=`)에서 부등식(`≤`, 즉 "생산량만큼 쓸 수 있지만 다 쓸 필요는 없다")으로
 고칩니다.
 
-$$c_b + c_p \leq 0.3x \quad \text{(C5 수정: 크림 물질 균형 — 남는 크림은 버릴 수 있음)}$$
-$$s \leq 0.5x \quad \text{(C6 수정: 탈지유 물질 균형 — 남는 탈지유는 버릴 수 있음)}$$
+$$
+c_b + c_p \leq 0.3x \quad \text{(C5 수정: 크림 물질 균형 — 남는 크림은 버릴 수 있음)}
+$$
+
+$$
+s \leq 0.5x \quad \text{(C6 수정: 탈지유 물질 균형 — 남는 탈지유는 버릴 수 있음)}
+$$
 
 이렇게 고쳐서 다시 최적화한 새 결과: 이익 70,210.84, 프리미엄 음료 10,030배럴, 원유 구매량
 30,000배럴(상한 도달).
@@ -662,34 +701,94 @@ Modeler가 정리해준 수리모형은 다음과 같습니다 (집합 $K$=크�
 
 **목적함수**
 
-$$\max \quad Z = 7.0\,\text{Vol}_{PRE} + 6.0\,\text{Vol}_{STD} + 4.0\,\text{Vol}_{CC} + 3.5\,\text{Vol}_{DBM} + 1.5\,\text{Vol}_{BS}$$
+$$
+\max \quad Z = 7.0\,\text{Vol}_{PRE} + 6.0\,\text{Vol}_{STD} + 4.0\,\text{Vol}_{CC} + 3.5\,\text{Vol}_{DBM} + 1.5\,\text{Vol}_{BS}
+$$
 
 **제약 조건**
 
-$$x_{Milk1} \leq 20{,}000, \quad x_{Milk2} \leq 30{,}000 \quad \text{(C1: 원유 조달 한도)}$$
-$$\textstyle\sum_{m} x_m \leq 45{,}000 \quad \text{(C2: 분리 설비 용량)}$$
-$$u^{blend}_k + u^{PC}_k \leq \textstyle\sum_{m} y_{k,m}\,x_m \quad \forall k \in K \quad \text{(C3a: 크림 물질 균형 — 잉여 폐기 허용)}$$
-$$w^{blend}_s + w^{SP}_s \leq \textstyle\sum_{m} y_{s,m}\,x_m \quad \forall s \in S \quad \text{(C3b: 탈지유 계열 물질 균형)}$$
-$$r^{CC}+r^{DBM}+r^{BS} \leq \textstyle\sum_{m} y_{RS,m}\,x_m \quad \text{(C3c: 잔여물 물질 균형)}$$
-$$\textstyle\sum_{k} u^{PC}_k \leq 10{,}000 \quad \text{(C4: 단백질 농축 설비 용량)}$$
-$$\textstyle\sum_{s} w^{SP}_s \leq 8{,}000 \quad \text{(C5: 2차 가공 설비 용량)}$$
-$$b^{PRE}_k + b^{STD}_k \leq u^{blend}_k \quad \forall k \in K \quad \text{(C6a: 음료용 크림 가용량)}$$
-$$b^{PRE}_{PC} + b^{STD}_{PC} \leq \textstyle\sum_{k} \alpha^{PC}_k\,u^{PC}_k \quad \text{(C6b: 음료용 단백질 농축물 가용량)}$$
-$$b^{PRE}_{FC} + b^{STD}_{FC} \leq \textstyle\sum_{s} \beta^{FC}_s\,w^{SP}_s \quad \text{(C6c: 음료용 발효 농축물 가용량)}$$
-$$b^{CC}_s + b^{DBM}_s \leq w^{blend}_s \quad \forall s \in S \quad \text{(C7a: Cooking Cream/DBM용 탈지유 계열 가용량)}$$
-$$b^{CC}_{PB} + b^{DBM}_{PB} \leq \textstyle\sum_{s} \beta^{PB}_s\,w^{SP}_s \quad \text{(C7b: 가공 베이스 가용량)}$$
-$$\textstyle\sum_i (q_i - 94)\,b^{PRE}_i \geq 0 \quad \text{(C8: Premium 품질지수} \geq 94 \text{ 를 선형화)}$$
-$$\textstyle\sum_i (q_i - 84)\,b^{STD}_i \geq 0 \quad \text{(C9: Standard 품질지수} \geq 84 \text{ 를 선형화)}$$
-$$\text{Vol}_{PRE} \geq 0.4\cdot\text{Vol}_{STD} \quad \text{(C10: Premium} \geq 0.4\times\text{Standard 비율)}$$
-$$\textstyle\sum_i (v_i - 1.0)\,b^{CC}_i \leq 0 \quad \text{(C11: Cooking Cream 휘발성 지수} \leq 1.0 \text{ 를 선형화)}$$
-$$b^{DBM}_{SM}=10\lambda,\ \ b^{DBM}_{PB}=4\lambda,\ \ b^{DBM}_{CS}=3\lambda,\ \ b^{DBM}_{RS}=\lambda \quad \text{(C12: DBM 고정 비율 10:4:3:1)}$$
-$$500 \leq 0.5\,r^{BS} \leq 1{,}000 \quad \text{(C13: Butter Solids 생산량 500~1,000배럴)}$$
-$$\text{모든 변수} \geq 0 \quad \text{(C14: 비음 조건)}$$
+$$
+x_{Milk1} \leq 20{,}000, \quad x_{Milk2} \leq 30{,}000 \quad \text{(C1: 원유 조달 한도)}
+$$
+
+$$
+\textstyle\sum_{m} x_m \leq 45{,}000 \quad \text{(C2: 분리 설비 용량)}
+$$
+
+$$
+u^{blend}_k + u^{PC}_k \leq \textstyle\sum_{m} y_{k,m}\,x_m \quad \forall k \in K \quad \text{(C3a: 크림 물질 균형 — 잉여 폐기 허용)}
+$$
+
+$$
+w^{blend}_s + w^{SP}_s \leq \textstyle\sum_{m} y_{s,m}\,x_m \quad \forall s \in S \quad \text{(C3b: 탈지유 계열 물질 균형)}
+$$
+
+$$
+r^{CC}+r^{DBM}+r^{BS} \leq \textstyle\sum_{m} y_{RS,m}\,x_m \quad \text{(C3c: 잔여물 물질 균형)}
+$$
+
+$$
+\textstyle\sum_{k} u^{PC}_k \leq 10{,}000 \quad \text{(C4: 단백질 농축 설비 용량)}
+$$
+
+$$
+\textstyle\sum_{s} w^{SP}_s \leq 8{,}000 \quad \text{(C5: 2차 가공 설비 용량)}
+$$
+
+$$
+b^{PRE}_k + b^{STD}_k \leq u^{blend}_k \quad \forall k \in K \quad \text{(C6a: 음료용 크림 가용량)}
+$$
+
+$$
+b^{PRE}_{PC} + b^{STD}_{PC} \leq \textstyle\sum_{k} \alpha^{PC}_k\,u^{PC}_k \quad \text{(C6b: 음료용 단백질 농축물 가용량)}
+$$
+
+$$
+b^{PRE}_{FC} + b^{STD}_{FC} \leq \textstyle\sum_{s} \beta^{FC}_s\,w^{SP}_s \quad \text{(C6c: 음료용 발효 농축물 가용량)}
+$$
+
+$$
+b^{CC}_s + b^{DBM}_s \leq w^{blend}_s \quad \forall s \in S \quad \text{(C7a: Cooking Cream/DBM용 탈지유 계열 가용량)}
+$$
+
+$$
+b^{CC}_{PB} + b^{DBM}_{PB} \leq \textstyle\sum_{s} \beta^{PB}_s\,w^{SP}_s \quad \text{(C7b: 가공 베이스 가용량)}
+$$
+
+$$
+\textstyle\sum_i (q_i - 94)\,b^{PRE}_i \geq 0 \quad \text{(C8: Premium 품질지수} \geq 94 \text{ 를 선형화)}
+$$
+
+$$
+\textstyle\sum_i (q_i - 84)\,b^{STD}_i \geq 0 \quad \text{(C9: Standard 품질지수} \geq 84 \text{ 를 선형화)}
+$$
+
+$$
+\text{Vol}_{PRE} \geq 0.4\cdot\text{Vol}_{STD} \quad \text{(C10: Premium} \geq 0.4\times\text{Standard 비율)}
+$$
+
+$$
+\textstyle\sum_i (v_i - 1.0)\,b^{CC}_i \leq 0 \quad \text{(C11: Cooking Cream 휘발성 지수} \leq 1.0 \text{ 를 선형화)}
+$$
+
+$$
+b^{DBM}_{SM}=10\lambda,\ \ b^{DBM}_{PB}=4\lambda,\ \ b^{DBM}_{CS}=3\lambda,\ \ b^{DBM}_{RS}=\lambda \quad \text{(C12: DBM 고정 비율 10:4:3:1)}
+$$
+
+$$
+500 \leq 0.5\,r^{BS} \leq 1{,}000 \quad \text{(C13: Butter Solids 생산량 500~1,000배럴)}
+$$
+
+$$
+\text{모든 변수} \geq 0 \quad \text{(C14: 비음 조건)}
+$$
 
 각 제품의 $\text{Vol}_p$는 별도 제약 번호 없이 다음과 같이 **정의**됩니다 (Modeler가 실제로 낸
 `math_formulation.md`에서도 "Def."로만 표시하고 Cn 번호를 붙이지 않았습니다).
 
-$$\text{Vol}_{PRE}=\textstyle\sum_i b^{PRE}_i,\ \ \text{Vol}_{STD}=\textstyle\sum_i b^{STD}_i,\ \ \text{Vol}_{CC}=\textstyle\sum_i b^{CC}_i,\ \ \text{Vol}_{DBM}=18\lambda,\ \ \text{Vol}_{BS}=0.5\,r^{BS}$$
+$$
+\text{Vol}_{PRE}=\textstyle\sum_i b^{PRE}_i,\ \ \text{Vol}_{STD}=\textstyle\sum_i b^{STD}_i,\ \ \text{Vol}_{CC}=\textstyle\sum_i b^{CC}_i,\ \ \text{Vol}_{DBM}=18\lambda,\ \ \text{Vol}_{BS}=0.5\,r^{BS}
+$$
 
 또한 $b^{CC}_{RS}$·$b^{DBM}_{RS}$(잔여물이 Cooking Cream/DBM 블렌딩에 실제 투입되는 양)는
 각각 $r^{CC}$·$r^{DBM}$(잔여물 배분량)을 넘을 수 없다는 관계로 C3c에 이미 반영되어 있어, 별도
