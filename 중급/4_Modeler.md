@@ -291,9 +291,15 @@ Modeler는 아래와 같이 완성된 수리모형을 정리해서 보여줍니�
 
 **목적함수**
 
+<div align="center">
+
 $$\max \quad 7.0 \cdot b$$
 
+</div>
+
 **제약 조건**
+
+<div align="center">
 
 $$x \leq 30{,}000 \quad \text{(C1: 원유 구매 상한)}$$
 
@@ -317,6 +323,8 @@ $$-4 \cdot c_b + 21 \cdot p + 11 \cdot f \geq 0 \quad \text{(C10: 품질 요건 
 
 $$x, c_b, c_p, p, s, f, b \geq 0 \quad \text{(C11: 비음 조건)}$$
 
+</div>
+
 수리모형이 말로 설명한 내용과 맞다고 확인되면 구현을 요청합니다.
 
 > **나**: 수리모형 맞아. gurobipy로 구현하고 최적화까지 실행해줘.
@@ -334,9 +342,13 @@ Modeler가 다시 살펴보니, 위 수리모형의 **C5·C6가 부등식이 아
 아래처럼 등식(`=`)에서 부등식(`≤`, 즉 "생산량만큼 쓸 수 있지만 다 쓸 필요는 없다")으로
 고칩니다.
 
+<div align="center">
+
 $$c_b + c_p \leq 0.3x \quad \text{(C5 수정: 크림 물질 균형 — 남는 크림은 버릴 수 있음)}$$
 
 $$s \leq 0.5x \quad \text{(C6 수정: 탈지유 물질 균형 — 남는 탈지유는 버릴 수 있음)}$$
+
+</div>
 
 이렇게 고쳐서 다시 최적화한 새 결과: 이익 70,210.84, 프리미엄 음료 10,030배럴, 원유 구매량
 30,000배럴(상한 도달).
@@ -673,9 +685,15 @@ Modeler가 정리해준 수리모형은 다음과 같습니다 (집합 $K$=크�
 
 **목적함수**
 
+<div align="center">
+
 $$\max \quad Z = 7.0\,\text{Vol}&#95;{PRE} + 6.0\,\text{Vol}&#95;{STD} + 4.0\,\text{Vol}&#95;{CC} + 3.5\,\text{Vol}&#95;{DBM} + 1.5\,\text{Vol}&#95;{BS}$$
 
+</div>
+
 **제약 조건**
+
+<div align="center">
 
 $$x_{Milk1} \leq 20{,}000, \quad x_{Milk2} \leq 30{,}000 \quad \text{(C1: 원유 조달 한도)}$$
 
@@ -715,10 +733,16 @@ $$500 \leq 0.5\,r^{BS} \leq 1{,}000 \quad \text{(C13: Butter Solids 생산량 50
 
 $$\text{모든 변수} \geq 0 \quad \text{(C14: 비음 조건)}$$
 
+</div>
+
 각 제품의 $\text{Vol}_p$는 별도 제약 번호 없이 다음과 같이 **정의**됩니다 (Modeler가 실제로 낸
 `math_formulation.md`에서도 "Def."로만 표시하고 Cn 번호를 붙이지 않았습니다).
 
+<div align="center">
+
 $$\text{Vol}&#95;{PRE}=\textstyle\sum_i b^{PRE}&#95;i,\ \ \text{Vol}&#95;{STD}=\textstyle\sum_i b^{STD}&#95;i,\ \ \text{Vol}&#95;{CC}=\textstyle\sum_i b^{CC}&#95;i,\ \ \text{Vol}&#95;{DBM}=18\lambda,\ \ \text{Vol}&#95;{BS}=0.5\,r^{BS}$$
+
+</div>
 
 또한 $b^{CC}&#95;{RS}$ · $b^{DBM}&#95;{RS}$(잔여물이 Cooking Cream/DBM 블렌딩에 실제 투입되는 양)는
 각각 $r^{CC}$ · $r^{DBM}$(잔여물 배분량)을 넘을 수 없다는 관계로 C3c에 이미 반영되어 있어, 별도
