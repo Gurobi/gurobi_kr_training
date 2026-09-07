@@ -720,8 +720,8 @@ $$\text{모든 변수} \geq 0 \quad \text{(C14: 비음 조건)}$$
 
 $$\text{Vol}&#95;{PRE}=\textstyle\sum_i b^{PRE}&#95;i,\ \ \text{Vol}&#95;{STD}=\textstyle\sum_i b^{STD}&#95;i,\ \ \text{Vol}&#95;{CC}=\textstyle\sum_i b^{CC}&#95;i,\ \ \text{Vol}&#95;{DBM}=18\lambda,\ \ \text{Vol}&#95;{BS}=0.5\,r^{BS}$$
 
-또한 $b^{CC}&#95;{RS}$·$b^{DBM}&#95;{RS}$(잔여물이 Cooking Cream/DBM 블렌딩에 실제 투입되는 양)는
-각각 $r^{CC}$·$r^{DBM}$(잔여물 배분량)을 넘을 수 없다는 관계로 C3c에 이미 반영되어 있어, 별도
+또한 $b^{CC}&#95;{RS}$ · $b^{DBM}&#95;{RS}$(잔여물이 Cooking Cream/DBM 블렌딩에 실제 투입되는 양)는
+각각 $r^{CC}$ · $r^{DBM}$(잔여물 배분량)을 넘을 수 없다는 관계로 C3c에 이미 반영되어 있어, 별도
 제약으로 중복 표기하지 않았습니다.
 
 > 💡 **곁다리 해설**: 성분 가용량 제약(C3a~c)이 **부등식**으로 세워져 있는 점을 눈여겨보세요 — Part 1
